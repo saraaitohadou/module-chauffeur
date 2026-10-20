@@ -1,4 +1,8 @@
 from fastapi import FastAPI
+import models
+from database import engine
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="API Module Chauffeur",
@@ -8,13 +12,5 @@ app = FastAPI(
 
 @app.get("/")
 def home():
-    return {"status": "online", "message": "Bienvenue sur le module Chauffeur !"}
+    return {"status": "online", "message": " module Chauffeur pret !"}
 
-@app.get("/api/chauffeurs/test")
-def test_chauffeur():
-    return {
-        "id_chauffeur": 1,
-        "nom": "El Mansouri",
-        "prenom": "Karim",
-        "statut": "DISPONIBLE"
-    }
